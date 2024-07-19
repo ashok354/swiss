@@ -1,0 +1,45 @@
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+str(swiss)
+head(swiss)
+summary(swiss)
+```
+
+```{r}
+missing_values <- sapply(swiss, function(x) sum(is.na(x)))
+print(missing_values)
+```
+
+```{r}
+# Visualize the data
+# Histogram for numerical variables
+num_vars <- sapply(swiss, is.numeric)
+num_data <- swiss[, num_vars]
+```
+
+```{r}
+# boxplot
+ggplot(swiss, aes(x =Fertility, y =Education)) +
+  geom_boxplot(fill = "orange", color = "black") +
+  theme_minimal() +
+  labs(title = "Boxplot of Humidity by swiss", x= "fertility", y= "education")
+```
+
+```{r}
+# Scatter plot to show the relationship between two numeric variables (replace 'temp' and 'humidity' with appropriate column names)
+ggplot(swiss, aes(x = Fertility, y = Education)) +
+  geom_point(color = "red") +
+  theme_minimal() +
+  labs(title = "Scatter Plot of fertility vs education", x = "fertility", y = "education")
+```
+
+```{r}
+# Time series plot for a variable over time (replace 'date' and 'temp' with appropriate column names)
+ggplot(swiss, aes(x = Fertility , y = Education)) +
+  geom_line(color = "blue") +
+  theme_minimal() +
+  labs(title = "swiss", x = "fertility", y = "education")
+```
+
